@@ -5,33 +5,33 @@ import pylab as pl
 import random
 
 digits = load_digits()
-#Define variables
+# define variables
 n_samples = len(digits.images)
 x = digits.images.reshape((n_samples, -1))
 y = digits.target
 
-#Create random indices
-sample_index=random.sample(range(len(x)),len(x)/5) #20-80
+#crea indices aleatorios
+sample_index=random.sample(range(len(x)),len(x)/5) #entre 20 y 80
 valid_index=[i for i in range(len(x)) if i not in sample_index]
 
-#Sample and validation images
+# imagenes muestra y validas
 sample_images=[x[i] for i in sample_index]
 valid_images=[x[i] for i in valid_index]
 
-#Sample and validation targets
+# etiqueta las muestras validas y de prueba
 sample_target=[y[i] for i in sample_index]
 valid_target=[y[i] for i in valid_index]
 
-#Using the Random Forest Classifier
+# usando random forest classifier
 classifier = ensemble.RandomForestClassifier()
 
-#Fit model with sample data
+# ajusta el modelo a los datos muestra
 classifier.fit(sample_images, sample_target)
 
-#Attempt to predict validation data
+# intenta predecir datos de validacion
 score=classifier.score(valid_images, valid_target)
 print 'Random Tree Classifier:\n'
-print 'Score\t'+str(score)
+print 'Puntaje\t'+str(score)
 print classifier.predict([x[i]])
 i=800
 
