@@ -23,7 +23,7 @@ sample_target=[y[i] for i in sample_index]
 valid_target=[y[i] for i in valid_index]
 
 # usando random forest classifier
-classifier = ensemble.RandomForestClassifier()
+classifier = ensemble.RandomForestClassifier(n_estimators=50,min_samples_split =100,min_samples_leaf=100)
 
 # ajusta el modelo a los datos muestra
 classifier.fit(sample_images, sample_target)
@@ -33,7 +33,7 @@ score=classifier.score(valid_images, valid_target)
 print 'Random Tree Classifier:\n'
 print 'Puntaje\t'+str(score)
 print classifier.predict([x[i]])
-i=800
+i=89
 
 pl.gray()
 pl.matshow(digits.images[i])
